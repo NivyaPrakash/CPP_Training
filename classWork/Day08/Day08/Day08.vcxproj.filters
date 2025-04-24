@@ -15,26 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Day05.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="pgm01.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pgm02.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pgm03.cpp">
+    <ClCompile Include="isPrime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pgm04.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pgm06.cpp">
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="isprime.h">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pgm07.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    </ClInclude>
   </ItemGroup>
 </Project>

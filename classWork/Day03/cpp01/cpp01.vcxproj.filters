@@ -15,25 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Day05.cpp">
+    <ClCompile Include="file11.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pgm01.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pgm02.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pgm03.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pgm04.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pgm06.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pgm07.cpp">
+    <ClCompile Include="file12.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

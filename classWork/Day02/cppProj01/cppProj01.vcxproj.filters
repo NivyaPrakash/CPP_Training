@@ -15,26 +15,40 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Day05.cpp">
+    <ClCompile Include="src\file1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pgm01.cpp">
+    <ClCompile Include="addition\src\addition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pgm02.cpp">
+    <ClCompile Include="subtraction\src\subtraction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pgm03.cpp">
+    <ClCompile Include="multiplication\src\multiplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pgm04.cpp">
+    <ClCompile Include="division\src\division.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pgm06.cpp">
+    <ClCompile Include="modulo\src\modulo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pgm07.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="addition\inc\addition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subtraction\inc\subtraction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="multiplication\inc\multiplication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="division\inc\division.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="modulo\inc\modulo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
