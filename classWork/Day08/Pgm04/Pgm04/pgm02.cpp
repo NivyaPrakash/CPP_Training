@@ -1,15 +1,18 @@
 #include<iostream>
+#include "fibo.h"
 using namespace std;
-int fibo(int f,int s,int n)
+int fibo(int n)
 {
-	int n,t,i;
-	f = 1;s = 1;
+	int t,i,f=1,s=1;
+	
 	cout << f << s;
-	while(i<=n)
+	 for(i = 1;i < n;++i)
 	{
 		t = f + s;
-		t = s;
-		s = f;
+		cout << t;
+		f = s;
+		s = t;
 		
+		return 0;
 	}
 }
