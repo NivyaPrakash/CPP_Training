@@ -6,7 +6,7 @@ int main() {
     int n;
     cout << "Enter a number: ";
     cin >> n;
-
+   
     armstrong(n);
 
     return 0;
@@ -15,7 +15,7 @@ int armstrong(int n)
 {
     int num;
     num = n;
-    int digit, sum = 0;
+    int digit,sum=0;
     int numDigits = 0;
     int temp = n;
     while (temp > 0) {
@@ -38,3 +38,14 @@ int armstrong(int n)
     }
     return sum;
 }
+
+   
+
+   
+
+
+
+
+
+
+
