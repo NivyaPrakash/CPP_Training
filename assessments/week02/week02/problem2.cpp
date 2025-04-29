@@ -2,7 +2,7 @@
 using namespace std;
 int main()
 {
-	int n,d,c1=0,c2=0,c3=0,c4=0,c5=0,c6=0,c7=0,c8=0,c9=0,c11=0;
+	int n,d,c1=0,c2=0,c3=0,c4=0,c5=0,c6=0,c7=0,c8=0,c9=0,c10=0;
 	cout << "Enter a no:" << endl;
 	cin >> n;
 	while (n > 0)
@@ -51,7 +51,7 @@ int main()
 		}
 		else if(d == 0)
 		{
-			 c11++;
+			 c10++;
 
 		}
 
@@ -59,7 +59,7 @@ int main()
 		
 		
 	}
-	cout << "0:" << c11<<endl;
+	cout << "0:" << c10<<endl;
 	cout << "1:" << c1 << endl;
 	cout << "2:" << c2 << endl;
 	cout << "3:" << c3 << endl;
