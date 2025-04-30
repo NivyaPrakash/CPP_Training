@@ -9,7 +9,8 @@ int main()
 	int n;
 	cout << "Enter no:";
 	cin >> n;
-	fibo(n);
+	int ret=fibo(n);
+	cout << "The num is:" << ret;
 }
 
 int fibo(int n)

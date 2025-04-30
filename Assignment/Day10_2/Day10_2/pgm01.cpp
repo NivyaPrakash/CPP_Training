@@ -1,24 +1,23 @@
 #include<iostream>
 using namespace std;
-void oddity(int);
+void oddity(int, int);
 
 int main()
 {
 	int num;
 	cout << "Enter no:" << endl;
 	cin >> num;
-	oddity(num);
+	oddity(num, 1);
 	return 0;
 }
 
-void oddity(int n)
+void oddity(int n, int floor)
 {
-	
-	if (n > 1)
+	if (floor > n)
 		return;
-	
-	else if (n % 2 == 1)
-		cout << n;
-	oddity(n - 2);
-	cout << n<<" ";
+	else
+	{
+		cout << floor << ", ";
+		oddity(n, floor + 2);
+	}
 }

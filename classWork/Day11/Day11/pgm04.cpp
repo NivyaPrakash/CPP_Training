@@ -1,51 +1,29 @@
 #include<iostream>
-#include<cmath> 
 using namespace std;
-int armstrong(int);
-int main() {
-    int n;
-    cout << "Enter a number: ";
-    cin >> n;
-   
-    armstrong(n);
-
-    return 0;
-}
-int armstrong(int n)
+int main()
 {
-    int num;
-    num = n;
-    int digit,sum=0;
-    int numDigits = 0;
-    int temp = n;
-    while (temp > 0) {
-        temp = temp / 10;  // Remove the last digit
-        numDigits++;  // Increment the digit count
-    }
+	int arr[10];
+	int i,countOdd,countEven;
+	for (i = 0,countOdd=0;i < 10;i++)
+	{
+		if (i % 2 != 0)
+		{
+			arr[countOdd] = i;
+			countOdd++;
+		}
+		
+	}
+	for (int i = 0,countEven=countOdd;i < 10;i++)
+	{
+		if (i % 2 == 0)
+		{
+			arr[countEven] = i;
+			countEven++;
+		}
+	}
+	for (i = 0;i < 10;i++)
+	{
+		cout << arr[i];
+	}
 
-
-    while (n > 0) {
-        digit = n % 10;  // seperated the digits
-        sum = sum + pow(digit, numDigits);  // Add digit to power of numDigits and sum
-        n = n / 10;  // remove the last digit
-    }
-    cout << "sum is" << sum;
-    if (sum == num) {  // check sum is equal aoriginal number
-        cout << " Armstrong number" << endl;
-    }
-    else {
-        cout << " not Armstrong number" << endl;
-    }
-    return sum;
 }
-
-   
-
-   
-
-
-
-
-
-
-

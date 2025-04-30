@@ -27,5 +27,8 @@
     <ClCompile Include="pgm04.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pgm05.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
