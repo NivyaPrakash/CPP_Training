@@ -189,6 +189,15 @@
     <ClCompile Include="prg61.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="prg62.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prg63.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prg64.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="prg42.cpp">
