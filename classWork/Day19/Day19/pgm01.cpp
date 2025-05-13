@@ -21,6 +21,8 @@ int* ptr1=(void* )0=> int* ptr=nullptr;
 
 can not convet char* to int* in assignment;
 
+     
+
 */
 
 
