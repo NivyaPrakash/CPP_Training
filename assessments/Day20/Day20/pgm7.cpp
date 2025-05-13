@@ -1,10 +1,18 @@
 #include<iostream>
 #define MAX 50
-int salaryCalc(int, int, int, int, int);
+void fun(int);
 using namespace std;
 int main()
 {
 	int n;
+	cout << "Enter the number of employees:" << endl;
+	cin >> n;
+	fun(n);
+
+}
+
+void fun(int n)
+{
 	int empid[MAX];
 	string empname[MAX];
 	string desig[MAX];
@@ -15,9 +23,8 @@ int main()
 	int gross[MAX];
 	int red[MAX];
 	int salary[MAX];
-	
-	cout << "Enter the number of employees:" << endl;
-	cin >> n;
+
+
 	for (int i = 0;i < n;i++)
 	{
 		cout << "Enter id:" << endl;
@@ -94,5 +101,6 @@ int main()
 		cout << "-------------------------------------------------" << endl;
 	}
 
-	}
 
+
+}

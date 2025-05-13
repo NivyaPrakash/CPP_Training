@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="prg6.cpp">
+    <ClCompile Include="pgm7.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
