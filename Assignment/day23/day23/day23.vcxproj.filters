@@ -15,10 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pgm7.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pgm08.cpp">
+    <ClCompile Include="pgm01.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
