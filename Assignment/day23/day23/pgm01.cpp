@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-#define MAX 100
+
 
 struct Product {
     int productId;
@@ -11,8 +11,15 @@ struct Product {
     float price;
 };
 
+void addProduct(Product, int);
+void updateProduct(Product, int);
+void deleteProduct(Product , int);
+void searchProduct(Product, int );
+void display(Product, int);
+void menu();
+
 void addProduct(Product pro[], int& count) {
-    if (count >= MAX) {
+    if (count >= 100) {
         cout << "Inventory is full.\n";
         return;
     }
@@ -83,18 +90,28 @@ void searchProduct(Product pro[], int count) {
     cout << "Product not found.\n";
 }
 
-void displayProducts(Product pro[], int count) {
+void display(Product pro[], int count) {
     if (count == 0) {
         cout << "Inventory is empty.\n";
         return;
     }
-    cout << "\nID\tName\t\tQuantity\tPrice\n";
+    
     for (int i = 0; i < count; i++) {
-        cout << pro[i].productId << "\t"
-            << pro[i].productName << "\t\t"
-            << pro[i].quantity << "\t\t"
-            << pro[i].price << endl;
+        cout << pro[i].productId <<endl;
+        cout << pro[i].productName << endl;
+        cout << pro[i].quantity << endl;
+        cout << pro[i].price << endl;
     }
+}
+
+void menu()
+{
+    cout << "1.add Product" << endl;
+    cout << "2.Delete Product" << endl;
+    cout << "3.Search product" << endl;
+    cout << "4.update product" << endl;
+    cout << "5.display" << endl;
+ 
 }
 
 int main() {
@@ -102,17 +119,28 @@ int main() {
     int count = 0;
     int choice;
     do {
+        menu();
         cout << "Enter your choice: ";
         cin >> choice;
-
+        
         switch (choice) {
-        case 1: addProduct(p,count); break;
-        case 2: deleteProduct(p, count); break;
-        case 3: searchProduct(p, count); break;
-        case 4:updateProduct(p, count);break;
-        case 5: displayProducts(p,count); break;
-        case 6: cout << "Exiting...\n"; break;
-        default: cout << "Invalid choice. Try again.\n";
+        case 1: 
+            addProduct(p,count);
+            break;
+        case 2:
+            deleteProduct(p, count);
+            break;
+        case 3:
+            searchProduct(p, count);
+            break;
+        case 4:
+            updateProduct(p, count);
+            break;
+        case 5: 
+            display(p,count);
+            break;
+        
+        default: cout << "Invalid choice";
 
         }
     } while (choice != 6);
