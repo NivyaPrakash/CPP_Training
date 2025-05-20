@@ -2,14 +2,6 @@
 #include <string>
 using namespace std;
 
-void addProduct(Product, int);
-void updateProduct(Product, int);
-void deleteProduct(Product, int);
-void searchProduct(Product, int);
-void displayProducts(Product, int);
-
-
-
 #define MAX 100
 
 struct Product {
@@ -104,27 +96,4 @@ void displayProducts(Product pro[], int count) {
             << pro[i].price << endl;
     }
 }
-int main() {
-    Product inventory[MAX];
-    int count = 0;
-    int choice;
 
-    do {
-        cout << "\nInventory Management System\n";
-        cout << "1. Add Product\n2. Update Product\n3. Delete Product\n4. Search Product\n5. Display All\n6. Exit\n";
-        cout << "Enter your choice: ";
-        cin >> choice;
-
-        switch (choice) {
-        case 1: addProduct(inventory, count); break;
-        case 2: updateProduct(inventory, count); break;
-        case 3: deleteProduct(inventory, count); break;
-        case 4: searchProduct(inventory, count); break;
-        case 5: displayProducts(inventory, count); break;
-        case 6: cout << "Exiting...\n"; break;
-        default: cout << "Invalid choice. Try again.\n";
-        }
-    } while (choice != 6);
-
-    return 0;
-}
