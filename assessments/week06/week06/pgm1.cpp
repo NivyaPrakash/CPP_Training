@@ -43,4 +43,8 @@ int main()
 	Flight f1("AI203", 100);
 	f1.bookSeats(80);
 	f1.showAvailability();
+
+	
+
+	
 }
