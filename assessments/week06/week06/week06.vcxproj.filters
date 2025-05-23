@@ -18,5 +18,11 @@
     <ClCompile Include="pgm1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pgm2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pgm03.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
