@@ -19,6 +19,11 @@ public:
 	void bookSeats(int b)
 	{
 		bookseat = b;
+		int av = totalseat - bookseat;
+		if (bookseat >= av)
+		{
+			cout << "Booking Failed: Not enough seats.";
+		}
 	}
 	
 
@@ -41,10 +46,12 @@ int main()
 {
 
 	Flight f1("AI203", 100);
-	f1.bookSeats(80);
+	f1.bookSeats(30);
 	f1.showAvailability();
 
-	
+	cout << endl;
 
+	f1.bookSeats(80);
+	
 	
 }
