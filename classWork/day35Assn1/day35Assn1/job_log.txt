@@ -1,0 +1,11 @@
+[INFO] JobChain Execution Log
+----------------------------------------
+[INFO] Successfully loaded 5 jobs.
+[INFO] Selected Priority Scheduling.
+[DEBUG] Executing Job ID: 4 | Priority: 5 | ExecTime 182ms
+[DEBUG] Executing Job ID: 5 | Priority: 4 | ExecTime 140ms
+[DEBUG] Executing Job ID: 2 | Priority: 3 | ExecTime 156ms
+[DEBUG] Executing Job ID: 1 | Priority: 2 | ExecTime 109ms
+[DEBUG] Executing Job ID: 3 | Priority: 1 | ExecTime 124ms
+[INFO] All jobs executed in 711ms
+[INFO] Log saved to job_log.txt.
