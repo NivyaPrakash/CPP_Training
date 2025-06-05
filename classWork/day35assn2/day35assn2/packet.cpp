@@ -6,7 +6,7 @@ using namespace std;
 
 enum LoggingLevel
 {
-	INFO,DEBUG,WARNING,ERROR,
+	INFO,DEBUG,WARNING,ERROR
 };
 
 class Packet
