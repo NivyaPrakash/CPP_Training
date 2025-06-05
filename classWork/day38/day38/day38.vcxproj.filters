@@ -24,7 +24,7 @@
     <ClCompile Include="prg03.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="assn8.cpp">
+    <ClCompile Include="1assn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Assn1.cpp">
@@ -46,6 +46,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="assn7.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="assn8.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

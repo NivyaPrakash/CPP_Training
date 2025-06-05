@@ -1,67 +1,26 @@
-#include<iostream>
-#include<list>
-#include<string>
-#include<algorithm>
+#include <iostream>
+#include <forward_list>
+#include <string>
 using namespace std;
-std::list<string>tasks;
-
-
-bool criticaltask(const string& task)
-{
-	return task.find("critical")!=string::npos;
+forward_list<string>& messages;
+void clean(forward_list<string>& messages) {
+    messages.remove_if([](const string& msg) {
+        return msg.find("DELETED:") == 0;
+        });
 }
 
-void addTask(const string& task)
-{
-	if (criticaltask(task))
-	{
-		tasks.push_front(task);
-	}
-	else
-	{
-		tasks.push_back(task);
-	}
+void print(const forward_list<string>& messages) {
+    for (const auto& msg : messages)
+        cout << msg << endl;
 }
 
+int main() {
+    forward_list<string> messages = {
+        "Hi", "Hello", "DELETED: Spam", "How are you?", "DELETED: Abuse"
+    };
 
-void urgentTask(const string& task)
-{
-	tasks.push_front(task);
-}
+    clean(messages);
+    print(messages);
 
-
-
-
-void removeTask(const string& task)
-{
-	auto it = find(tasks.begin(), tasks.end(), task);
-	if (it != tasks.end())
-	{
-		tasks.erase(it);
-	}
-	
-}
-
-
-void displaytask()
-{
-	for (auto i :tasks)
-		cout << i<<"->";
-
-	cout << endl;
-}
-
-
-int main()
-{
-	addTask("PrepareReport");
-	addTask("SubmitExpense");
-	urgentTask(" ClientCall");
-	addTask("FixBug");
-	removeTask("SubmitExpense");
-	displaytask();
-	addTask("criticalDeployment");
-	displaytask();
-
-
+    return 0;
 }
