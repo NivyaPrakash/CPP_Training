@@ -51,5 +51,14 @@
     <ClCompile Include="assn8.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="assn9.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="assn10.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="assn11.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

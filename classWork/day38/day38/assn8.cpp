@@ -2,7 +2,7 @@
 #include <forward_list>
 #include <string>
 using namespace std;
-forward_list<string>& messages;
+forward_list<string> messages;
 void clean(forward_list<string>& messages) {
     messages.remove_if([](const string& msg) {
         return msg.find("DELETED:") == 0;
