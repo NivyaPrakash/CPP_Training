@@ -267,6 +267,8 @@ public:
 
 int main()
 {
+	int login()
+	{
 		int ch;
 		cout << "Login Screen" << std::endl;
 		cout << "1. SignUp" << std::endl;
@@ -275,6 +277,29 @@ int main()
 		cout << "Choice: ";
 		cin >> ch;
 		cout << std::endl;
+	}
+	int menu() {
+		cout << "Main Menu" << endl;
+		cout << "CDR FILE" << endl;
+		cout << "Billing information" << endl;
+		cout << "Logout" << endl;
+	}
+	int menusub()
+	{
+		cout << "sub menu" << endl;
+		cout << "customer billing" << endl;
+		cout << "operator billing" << endl;
+		cout << "choice" << endl;
+		cin >> choice;
+	}
+	CDR c;
+	int choice1, choice2, choice3;
+	while (login())
+	{
+
+	}
+
+		
 
 
 
