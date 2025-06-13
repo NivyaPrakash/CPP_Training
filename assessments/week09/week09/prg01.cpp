@@ -211,6 +211,35 @@ public:
 	void operatorBilling()
 	{
 
+		cout << " Operator Brand: " << brandname << "(" << MSISDN << ")" << endl;
+		cout << "Incoming voice call durations :" ;
+		cout << "Outgoing voice call durations :";
+		cout << "Incoming SMS messages : ";
+		cout << "Outgoing SMS messages : ";
+		cout << "MB downloaded : | MB uploaded :";
+	}
+};
+
+
+class CDR
+{
+	vector<string>words;
+public:
+	void readfile(const string filename)
+	{
+		ifstream file(filename);
+		string line;
+		while (getline(file, line))
+			words = split(line, '|');
+		if (words.size() < 10)
+			continue;
+		string brandname = words[1];
+		string MMC = words[3];
+		string type = words[4];
+		int d = stoi(words[5]);
+		int download = stoi(words[6]);
+		int upload = stoi(words[7]);
+			
 	}
 };
 
