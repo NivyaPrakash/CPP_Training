@@ -2,6 +2,7 @@
 #include<string>
 #include<vector>
 #include<fstream>
+#include<map>
 using namespace std;
 enum loglevels { INFO, DEBUG, WARNING, ERROR };
 class logger
@@ -78,6 +79,11 @@ public:
 	string getusername()
 	{
 		return username;
+	}
+
+	bool checkPassword(std::string p)
+	{
+		return this->password == p;
 	}
 };
 
@@ -210,10 +216,10 @@ public:
 	}
 	void operatorBilling()
 	{
-
+		CDR c;
 		cout << " Operator Brand: " << brandname << "(" << MSISDN << ")" << endl;
-		cout << "Incoming voice call durations :" ;
-		cout << "Outgoing voice call durations :";
+		cout << "Incoming voice call durations :"<<c.d ;
+		cout << "Outgoing voice call durations :"<<c.d;
 		cout << "Incoming SMS messages : ";
 		cout << "Outgoing SMS messages : ";
 		cout << "MB downloaded : | MB uploaded :";
@@ -225,22 +231,61 @@ class CDR
 {
 	vector<string>words;
 public:
+	vector < string> split(const string& line, char del)
+	{
+		string word;
+		for (char ch : line)
+		{
+			if (ch == del)
+			{
+				words.push_back(word);
+				word.clear();
+			}
+			else {
+				word += ch;
+			}
+
+		}words.push_back(word);
+		return words;
+	}
 	void readfile(const string filename)
 	{
-		ifstream file(filename);
+		ifstream file("data.cdr");
 		string line;
+		if (!file.is_open())
+			cout << "file cannot be openend";
 		while (getline(file, line))
 			words = split(line, '|');
-		if (words.size() < 10)
-			continue;
-		string brandname = words[1];
-		string MMC = words[3];
-		string type = words[4];
-		int d = stoi(words[5]);
-		int download = stoi(words[6]);
-		int upload = stoi(words[7]);
-			
+		for (auto i = 0;i <= words.size();i++)
+		{
+			cout<<"words" << i + 1 << ":" << words[i];
+		}
+		file.close();
 	}
 };
+
+
+int main()
+{
+		int ch;
+		cout << "Login Screen" << std::endl;
+		cout << "1. SignUp" << std::endl;
+		cout << "2. Login" << std::endl;
+		cout << "3. Exit" << std::endl;
+		cout << "Choice: ";
+		cin >> ch;
+		cout << std::endl;
+
+
+
+
+		
+	
+
+}
+
+
+
+
 
 
