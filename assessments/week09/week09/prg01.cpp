@@ -293,9 +293,27 @@ int main()
 		cin >> choice;
 	}
 	CDR c;
+	vector<user>us;
+	string n, p, u;
 	int choice1, choice2, choice3;
 	while (login())
 	{
+		while (choice3)
+		{
+			
+			cout << "Sign Up";
+			cout << "Enter Name:";
+			cin.getline(cin,n);
+			cout << "Enter username:" << endl;
+			cin.getline(cin, u);
+			cout << "Enter password:" << endl;
+			cin.getline(cin, p);
+			us.push_back(n, u, p);
+			
+			
+
+
+		}
 
 	}
 
