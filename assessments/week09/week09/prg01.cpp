@@ -1,7 +1,66 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<fstream>
 using namespace std;
+enum loglevels { INFO, DEBUG, WARNING, ERROR };
+class logger
+{
+	ofstream logfile;
+	
+public:
+	logger(const char* filename)
+	{
+		logfile.open(filename, ios::app);
+		try
+		{
+			if (!logfile.is_open())
+				throw "ERROR:file cannot be openend";
+
+		}
+		catch (string s)
+		{
+			cout << s;
+			exit(0);
+		}
+
+	}
+	
+	const char* leveltostring(int level)
+	{
+
+		
+			switch (level)
+			{
+			case INFO:
+				return "INFO";
+				break;
+			case DEBUG:
+				return "DEBUG";
+				break;
+			case WARNING:
+				return "WARNING";
+				break;
+			case ERROR:
+				return "ERROR";
+				break;
+			default:
+				return "UNKNOWN";
+				break;
+			}
+		
+	}
+		void log(int level, const char* message)
+		{
+			logfile << "[" << leveltostring(level) << "]" << message << endl;
+		}
+	
+	
+};
+
+
+
+
 
 
 class user
@@ -75,18 +134,39 @@ public:
 			diffMOC.emplace_back(d);
 		}
 	}
-	void incomingmsg(int inmsg)
+	void incomingmsg()
 	{
 		bool isoperators = true;
 		if (isoperators)
 		{
-			inmsg++;
+			sameSMSMO++;
 		}
+		diffSMSMO++;
+
 	}
-	void outgoingmsg();
-	void customerbilling();
-	void download();
-	void upload();
+	void outgoingmsg()
+	{
+		bool isoperators = true;
+		if (isoperators)
+		{
+			sameSMSMT++;
+		}
+		diffSMSMT++;
+
+	}
+	
+	void customerbilling()
+	{
+
+	}
+	void download(int mb)
+	{
+		download = download + mb;
+	}
+	void upload(int mb)
+	{
+		upload = upload + mb;
+	}
 };
 
 
@@ -96,10 +176,42 @@ class operators
 	string brandname;
 	int MMC;
 	int MNC;
-	vector<int>sameMOC;
-	vector<int>diffMTC;
+	vector<int>MOC;
+	vector<int>MTC;
 	int SMSMO;
-	int GPRS;
+	int SMSMT;
+	int download;
+	int upload;
 public:
+	operators(std::string, std::string);
+	void incomingCall(int d)
+	{
+		MOC.emplace_back(d);
+	}
+	void outgoingCall(int d)
+	{
+		MTC.emplace_back(d);
+	}
+	void smsReceived()
+	{
+		SMSMO++;
+	}
+	void smsSent()
+	{
+		SMSMT++;
+	}
+	void download(int mb)
+	{
+		download = download + mb;
+	}
+	void upload(int mb)
+	{
+		download = download + mb;
+	}
+	void operatorBilling()
+	{
 
+	}
 };
+
+
