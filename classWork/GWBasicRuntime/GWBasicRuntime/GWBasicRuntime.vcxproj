@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{bb49e55e-952b-4e85-880b-23e74118e24e}</ProjectGuid>
-    <RootNamespace>day54</RootNamespace>
+    <ProjectGuid>{f919d0f5-fbbb-40ad-8a78-51dcec6ba48a}</ProjectGuid>
+    <RootNamespace>GWBasicRuntime</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,11 +128,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="prg01.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="prg02.cpp" />
-    <ClCompile Include="prg03.cpp" />
+    <ClCompile Include="GWBasicRuntime.cpp" />
+    <ClCompile Include="symbol_table.cpp" />
+    <ClCompile Include="type_system.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="symbol_table.h" />
+    <ClInclude Include="type_system.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
