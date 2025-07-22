@@ -58,6 +58,8 @@ int main() {
         std::vector<std::string> lines = {
             
             "PRINT \"HELLO\""
+
+            "PRINT 2 + 3"
            
         };
 
