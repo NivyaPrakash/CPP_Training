@@ -57,10 +57,11 @@ int main() {
     try {
         std::vector<std::string> lines = {
             
-            "PRINT \"HELLO\""
+            "PRINT(2 + 3) * 4"
 
-            "PRINT 2 + 3"
-           
+            "PRINT 2 + 3*4"
+            
+            "PRINT \"HELLO\""
         };
 
         SymbolTable symbolTable;
