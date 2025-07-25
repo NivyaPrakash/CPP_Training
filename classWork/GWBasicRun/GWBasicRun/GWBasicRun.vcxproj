@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ExpressionEvaluator.cpp" />
+    <ClCompile Include="FlowControl.cpp" />
     <ClCompile Include="googletestdemo.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -143,11 +144,14 @@
     </ClCompile>
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="ProgramMemory.cpp" />
     <ClCompile Include="StatementExecutor.cpp" />
     <ClCompile Include="SymbolTable.cpp" />
+    <ClCompile Include="SystemInterface.cpp" />
     <ClCompile Include="TypeSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="inc\FlowControl.h" />
     <ClInclude Include="inc\ExpressionEvaluator.h" />
     <ClInclude Include="inc\ASTNode.h" />
     <ClInclude Include="inc\Lexer.h" />
@@ -156,6 +160,8 @@
     <ClInclude Include="inc\StatementExecutor.h" />
     <ClInclude Include="inc\SymbolTable.h" />
     <ClInclude Include="inc\TypeSystem.h" />
+    <ClInclude Include="inc\ProgramMemory.h" />
+    <ClInclude Include="inc\SystemInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

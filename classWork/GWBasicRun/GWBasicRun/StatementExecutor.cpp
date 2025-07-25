@@ -1,15 +1,10 @@
-﻿/*#include "StatementExecuter.h"
-
-StatementExecuter::StatementExecuter() {
-    // TODO: Implement StatementExecuter
-}
-*/
-
-#include "StatementExecutor.h"
+﻿#include "StatementExecutor.h"
+#include "ASTNode.h"
 #include <iostream>
 
-StatementExecutor::StatementExecutor(SymbolTable& table)
-    : table_(table), evaluator_(table) {}
+// Updated constructor to include FlowControl and ExpressionEvaluator
+StatementExecutor::StatementExecutor(SymbolTable& table, ExpressionEvaluator& evaluator, FlowControl& flow)
+    : table_(table), evaluator_(evaluator), flowControl_(flow) {}
 
 void StatementExecutor::execute(ASTNode* node) {
     if (!node) return;
@@ -22,12 +17,35 @@ void StatementExecutor::execute(ASTNode* node) {
         }
         break;
     }
+
     case ASTType::PrintStmt:
         executePrint(static_cast<PrintNode*>(node));
         break;
+
     case ASTType::LetStmt:
         executeLet(static_cast<LetNode*>(node));
         break;
+
+    case ASTType::IfStmt: {
+        IfNode* ifNode = static_cast<IfNode*>(node);
+        if (flowControl_.handle(ifNode)) {
+            execute(ifNode->thenStmt);
+        }
+        break;
+    }
+
+    case ASTType::IfElseStmt: {
+        IfElseNode* ifElseNode = static_cast<IfElseNode*>(node);
+        if (flowControl_.handle(ifElseNode)) {
+            execute(ifElseNode->thenStmt);
+        }
+        else {
+            if (ifElseNode->elseStmt)
+                execute(ifElseNode->elseStmt);
+        }
+        break;
+    }
+
     default:
         break;  // Ignore other cases
     }
@@ -68,7 +86,6 @@ Value StatementExecutor::evaluateExpr(ASTNode* exprNode) {
         Value rightVal = evaluateExpr(bin->right);
 
         if (bin->op == "+") {
-            // If either side is a string, do string concatenation
             if (leftVal.getType() == ValueType::STRING || rightVal.getType() == ValueType::STRING) {
                 return Value(leftVal.asString() + rightVal.asString());
             }

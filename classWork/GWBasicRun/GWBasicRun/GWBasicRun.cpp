@@ -1,9 +1,12 @@
 #include <iostream>
+#include <vector>
 #include "Lexer.h"
 #include "Parser.h"
 #include "StatementExecutor.h"
 #include "SymbolTable.h"
 #include "ExpressionEvaluator.h"
+#include "FlowControl.h"
+#include "ProgramMemory.h"
 
 // Function to print AST (for checking parser output)
 void printAST(ASTNode* node, int indent = 0) {
@@ -31,6 +34,10 @@ void printAST(ASTNode* node, int indent = 0) {
         printAST(let->expr, indent + 2);
         break;
     }
+    case ASTType::IfStmt: {
+        std::cout << padding << "If Statement\n";
+        break;  // You can expand this for debugging
+    }
     case ASTType::BinOpExpr: {
         auto* bin = dynamic_cast<BinOpNode*>(node);
         std::cout << padding << "BinOp " << bin->op << "\n";
@@ -56,16 +63,18 @@ void printAST(ASTNode* node, int indent = 0) {
 int main() {
     try {
         std::vector<std::string> lines = {
-            
-            "PRINT(2 + 3) * 4"
-
-            "PRINT 2 + 3*4"
-            
-            "PRINT \"HELLO\""
+            "PRINT (2 + 3) * 4",
+            "PRINT 2 + 3*4",
+            "PRINT \"HELLO\"",
+            "LET X = 10",
+            "IF X < 5 THEN PRINT \"BIG\" ELSE PRINT \"NO\""
         };
 
         SymbolTable symbolTable;
-        StatementExecutor executor(symbolTable);
+        ProgramMemory programMemory;
+        ExpressionEvaluator evaluator(symbolTable);
+        FlowControl flowControl(symbolTable, evaluator, programMemory);
+        StatementExecutor executor(symbolTable, evaluator, flowControl);
 
         for (const auto& line : lines) {
             Lexer lexer;
@@ -89,4 +98,3 @@ int main() {
 
     return 0;
 }
-
