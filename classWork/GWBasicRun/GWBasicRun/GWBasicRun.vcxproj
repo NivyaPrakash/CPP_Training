@@ -151,6 +151,7 @@
     <ClCompile Include="TypeSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FunctionLibraries.h" />
     <ClInclude Include="inc\FlowControl.h" />
     <ClInclude Include="inc\ExpressionEvaluator.h" />
     <ClInclude Include="inc\ASTNode.h" />

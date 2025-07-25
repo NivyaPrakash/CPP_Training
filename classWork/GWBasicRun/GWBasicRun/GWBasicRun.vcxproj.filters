@@ -98,6 +98,9 @@
     <ClInclude Include="inc\FlowControl.h">
       <Filter>Runtime</Filter>
     </ClInclude>
+    <ClInclude Include="FunctionLibraries.h">
+      <Filter>Runtime</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
