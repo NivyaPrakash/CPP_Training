@@ -1,8 +1,8 @@
 ﻿#include "StatementExecutor.h"
 #include "ASTNode.h"
 #include <iostream>
+#include <stdexcept>
 
-// Updated constructor to include FlowControl and ExpressionEvaluator
 StatementExecutor::StatementExecutor(SymbolTable& table, ExpressionEvaluator& evaluator, FlowControl& flow)
     : table_(table), evaluator_(evaluator), flowControl_(flow) {}
 
@@ -12,7 +12,7 @@ void StatementExecutor::execute(ASTNode* node) {
     switch (node->type()) {
     case ASTType::Program: {
         ProgramNode* prog = static_cast<ProgramNode*>(node);
-        for (auto stmt : prog->stmts) {
+        for (ASTNode* stmt : prog->stmts) {
             execute(stmt);
         }
         break;
@@ -39,29 +39,39 @@ void StatementExecutor::execute(ASTNode* node) {
         if (flowControl_.handle(ifElseNode)) {
             execute(ifElseNode->thenStmt);
         }
-        else {
-            if (ifElseNode->elseStmt)
-                execute(ifElseNode->elseStmt);
+        else if (ifElseNode->elseStmt) {
+            execute(ifElseNode->elseStmt);
         }
         break;
     }
 
+    case ASTType::ForStmt:
+        executeFor(static_cast<ForNode*>(node));
+        break;
+
     default:
-        break;  // Ignore other cases
+        // You can add more statement types like GOTO, INPUT later
+        break;
     }
 }
 
 void StatementExecutor::executePrint(PrintNode* printNode) {
     Value result = evaluateExpr(printNode->expr);
 
-    if (result.getType() == ValueType::INT)
+    switch (result.getType()) {
+    case ValueType::INT:
         std::cout << result.asInt() << std::endl;
-    else if (result.getType() == ValueType::FLOAT)
+        break;
+    case ValueType::FLOAT:
         std::cout << result.asFloat() << std::endl;
-    else if (result.getType() == ValueType::STRING)
+        break;
+    case ValueType::STRING:
         std::cout << result.asString() << std::endl;
-    else
+        break;
+    default:
         std::cout << "Unknown value type" << std::endl;
+        break;
+    }
 }
 
 void StatementExecutor::executeLet(LetNode* letNode) {
@@ -69,16 +79,32 @@ void StatementExecutor::executeLet(LetNode* letNode) {
     table_.setVariable(letNode->name, result);
 }
 
+void StatementExecutor::executeFor(ForNode* forNode) {
+    std::string varName = forNode->var;
+
+    // Evaluate start, end, and step values
+    int start = evaluator_.evaluate(forNode->start).asInt();
+    int end = evaluator_.evaluate(forNode->end).asInt();
+    int step = evaluator_.evaluate(forNode->step).asInt();
+
+    if (step == 0) step = 1; // avoid infinite loop
+
+    for (int i = start; (step > 0 ? i <= end : i >= end); i += step) {
+        table_.setVariable(varName, Value(i));
+        execute(forNode->body);
+    }
+}
+
 Value StatementExecutor::evaluateExpr(ASTNode* exprNode) {
     switch (exprNode->type()) {
     case ASTType::NumberExpr:
         return Value(std::stoi(static_cast<NumberNode*>(exprNode)->value));
 
-    case ASTType::IdentExpr:
-        return table_.getVariable(static_cast<IdentNode*>(exprNode)->name);
-
     case ASTType::StringExpr:
         return Value(static_cast<StringNode*>(exprNode)->value);
+
+    case ASTType::IdentExpr:
+        return table_.getVariable(static_cast<IdentNode*>(exprNode)->name);
 
     case ASTType::BinOpExpr: {
         BinOpNode* bin = static_cast<BinOpNode*>(exprNode);
@@ -103,11 +129,11 @@ Value StatementExecutor::evaluateExpr(ASTNode* exprNode) {
             return Value(leftVal.asInt() / rightVal.asInt());
         }
         else {
-            throw std::runtime_error("Unknown operator: " + bin->op);
+            throw std::runtime_error("Unknown binary operator: " + bin->op);
         }
     }
 
     default:
-        throw std::runtime_error("Unsupported expression type");
+        throw std::runtime_error("Unsupported expression type in evaluateExpr()");
     }
 }

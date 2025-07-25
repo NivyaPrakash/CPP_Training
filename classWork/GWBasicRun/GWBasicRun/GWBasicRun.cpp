@@ -67,7 +67,10 @@ int main() {
             "PRINT 2 + 3*4",
             "PRINT \"HELLO\"",
             "LET X = 10",
-            "IF X < 5 THEN PRINT \"BIG\" "
+            "IF X < 5 THEN PRINT \"BIG\" ",
+
+            "FOR I = 1 TO 5 STEP 1 : PRINT I",  // Just this line
+             "NEXT I"
         };
 
         SymbolTable symbolTable;
