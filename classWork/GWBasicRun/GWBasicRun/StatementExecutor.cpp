@@ -14,6 +14,11 @@ void StatementExecutor::execute(ASTNode* node) {
         ProgramNode* prog = static_cast<ProgramNode*>(node);
         for (ASTNode* stmt : prog->stmts) {
             execute(stmt);
+
+            // Stop executing if a GOTO is triggered
+            if (flowControl_.hasJump()) {
+                break;
+            }
         }
         break;
     }
@@ -28,7 +33,25 @@ void StatementExecutor::execute(ASTNode* node) {
 
     case ASTType::IfStmt: {
         IfNode* ifNode = static_cast<IfNode*>(node);
-        if (flowControl_.handle(ifNode)) {
+        Value leftVal = evaluator_.evaluate(ifNode->lhs);
+        Value rightVal = evaluator_.evaluate(ifNode->rhs);
+        bool condition = false;
+
+        if (leftVal.getType() == ValueType::INT && rightVal.getType() == ValueType::INT) {
+            int l = leftVal.asInt();
+            int r = rightVal.asInt();
+            if (ifNode->op == "=") condition = (l == r);
+            else if (ifNode->op == "<") condition = (l < r);
+            else if (ifNode->op == ">") condition = (l > r);
+            else if (ifNode->op == "<=") condition = (l <= r);
+            else if (ifNode->op == ">=") condition = (l >= r);
+            else if (ifNode->op == "<>") condition = (l != r);
+        }
+        else {
+            throw std::runtime_error("Invalid types in IF condition");
+        }
+
+        if (condition && ifNode->thenStmt) {
             execute(ifNode->thenStmt);
         }
         break;
@@ -36,10 +59,28 @@ void StatementExecutor::execute(ASTNode* node) {
 
     case ASTType::IfElseStmt: {
         IfElseNode* ifElseNode = static_cast<IfElseNode*>(node);
-        if (flowControl_.handle(ifElseNode)) {
+        Value leftVal = evaluator_.evaluate(ifElseNode->left);
+        Value rightVal = evaluator_.evaluate(ifElseNode->right);
+        bool condition = false;
+
+        if (leftVal.getType() == ValueType::INT && rightVal.getType() == ValueType::INT) {
+            int l = leftVal.asInt();
+            int r = rightVal.asInt();
+            if (ifElseNode->op == "=") condition = (l == r);
+            else if (ifElseNode->op == "<") condition = (l < r);
+            else if (ifElseNode->op == ">") condition = (l > r);
+            else if (ifElseNode->op == "<=") condition = (l <= r);
+            else if (ifElseNode->op == ">=") condition = (l >= r);
+            else if (ifElseNode->op == "<>") condition = (l != r);
+        }
+        else {
+            throw std::runtime_error("Invalid types in IF-ELSE condition");
+        }
+
+        if (condition && ifElseNode->thenStmt) {
             execute(ifElseNode->thenStmt);
         }
-        else if (ifElseNode->elseStmt) {
+        else if (!condition && ifElseNode->elseStmt) {
             execute(ifElseNode->elseStmt);
         }
         break;
@@ -49,8 +90,12 @@ void StatementExecutor::execute(ASTNode* node) {
         executeFor(static_cast<ForNode*>(node));
         break;
 
+    case ASTType::GotoStmt:
+        flowControl_.handle(node); // mark jump
+        break;
+
     default:
-        // You can add more statement types like GOTO, INPUT later
+        // Other statement types can be added later (e.g., INPUT, GOSUB)
         break;
     }
 }
@@ -82,16 +127,19 @@ void StatementExecutor::executeLet(LetNode* letNode) {
 void StatementExecutor::executeFor(ForNode* forNode) {
     std::string varName = forNode->var;
 
-    // Evaluate start, end, and step values
     int start = evaluator_.evaluate(forNode->start).asInt();
     int end = evaluator_.evaluate(forNode->end).asInt();
     int step = evaluator_.evaluate(forNode->step).asInt();
 
-    if (step == 0) step = 1; // avoid infinite loop
+    if (step == 0) step = 1;
 
     for (int i = start; (step > 0 ? i <= end : i >= end); i += step) {
         table_.setVariable(varName, Value(i));
         execute(forNode->body);
+
+        if (flowControl_.hasJump()) {
+            break;
+        }
     }
 }
 

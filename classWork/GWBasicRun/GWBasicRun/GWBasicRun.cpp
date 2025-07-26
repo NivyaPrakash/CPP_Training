@@ -63,14 +63,18 @@ void printAST(ASTNode* node, int indent = 0) {
 int main() {
     try {
         std::vector<std::string> lines = {
-            "PRINT (2 + 3) * 4",
-            "PRINT 2 + 3*4",
-            "PRINT \"HELLO\"",
-            "LET X = 10",
-            "IF X < 5 THEN PRINT \"BIG\" ",
+           "PRINT (2 + 3) * 4",
+           "PRINT 2 + 3*4",
+           "PRINT \"HELLO\"",
+           "LET X = 10",
+           "IF X < 5 THEN PRINT \"BIG\"",
+           "FOR I = 1 TO 5 STEP 1 : PRINT I",
+           
 
-            "FOR I = 1 TO 5 STEP 1 : PRINT I",  // Just this line
-             "NEXT I"
+              "10 LET X = 1",
+              "20 IF X = 1 THEN GOTO 40",
+              "30 PRINT \"THIS WILL BE SKIPPED\"",
+              "40 PRINT \"JUMPED HERE\""
         };
 
         SymbolTable symbolTable;
